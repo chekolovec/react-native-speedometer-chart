@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { getStyles } from './rules';
 
 const Speedometer = (props) => {
-  const { value, totalValue, style, innerCircleStyle, outerCircleStyle, halfCircleStyle, showText, text, textStyle, showLabels, labelStyle, labelTextStyle, labelFormatter, showPercent, percentStyle, showIndicator } = props;
+  const { value, totalValue, style, innerCircleStyle, outerCircleStyle, halfCircleStyle, showText, text, textStyle, showLabels, labelStyle, labelTextStyle, labelFormatter, showPercent, percentStyle, showIndicator, needleImage } = props;
 
   const percentValue = parseInt(String((value * 100) / totalValue).split('.')[0]);
   const degreesValue = (value > totalValue) ? totalValue : value;
@@ -29,7 +29,11 @@ const Speedometer = (props) => {
 
   const indicadorElement = ((!showText) && (!showPercent) && (showIndicator) && (totalValue)) ? (
     <View style={styles.indicator}>
+      {needleImage ? (
+        <Image source={needleImage} style={styles.needleImage}  /> 
+      ) : (
       <View style={styles.pointIndicator} />
+      )}
     </View>
   ) : null;
 

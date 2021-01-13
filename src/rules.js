@@ -1,6 +1,6 @@
 import color from 'color';
 
-export const getStyles = ({ size, percentSize, internalColor, innerColor, outerColor, indicatorColor, showIndicator }, degrees, degreesValue) => ({
+export const getStyles = ({ size, percentSize, internalColor, innerColor, outerColor, indicatorColor, showIndicator, needleImage, needleWidth, needleHeight }, degrees, degreesValue) => ({
   outerCircle: {
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -47,7 +47,7 @@ export const getStyles = ({ size, percentSize, internalColor, innerColor, outerC
     backgroundColor: innerColor,
   },
   indicator: {
-    height: 4,
+    height: needleImage ? 0 : 4,
     zIndex: 1000,
     justifyContent: 'center',
     transform: [{ translateX: size / 4 }, { rotate: `${(degrees + 90)}deg` }, { translateX: (size / 4 * -1) }],
@@ -68,4 +68,9 @@ export const getStyles = ({ size, percentSize, internalColor, innerColor, outerC
   content: (showIndicator) ? {
     marginBottom: 10,
   } : null,
+  needleImage: {
+    alignSelf: 'flex-end',
+    width: needleWidth || 67,
+    height: needleHeight || 14,
+  }
 });
